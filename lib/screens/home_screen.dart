@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+//* works like useEffect in react
   @override
   void initState() {
     super.initState();
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen>
         TabController(length: 3, vsync: this); //* Length of the tab
   }
 
+//*  Called when this object is removed from the tree permanently.
   @override
   void dispose() {
     _tabController.dispose();
@@ -59,7 +61,14 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
               ))
         ],
-        body: Container(color: Colors.blue),
+        body: TabBarView(controller: _tabController, children: [
+          ListView.builder(
+              itemCount: 5, itemBuilder: (context, index) => Text("Home")),
+          ListView.builder(
+              itemCount: 5, itemBuilder: (context, index) => Text("Settings")),
+          ListView.builder(
+              itemCount: 5, itemBuilder: (context, index) => Text("Profile")),
+        ]),
       ),
     );
   }
