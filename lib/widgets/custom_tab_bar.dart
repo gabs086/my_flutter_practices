@@ -1,29 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/food_model.dart';
 
 class CustomTabBar extends StatelessWidget {
   final TabController tabController;
 
   const CustomTabBar({super.key, required this.tabController});
 
+  List<Tab> _buildCategoryTabs() {
+    //* enum for food categories
+    return FoodCategory.values
+        .map((category) => Tab(
+              text: category.toString().split('.').last,
+            ))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TabBar(
       controller: tabController,
-      tabs: [
-        //* 1st Tab. Home
-        Tab(
-          icon: Icon(Icons.home),
-        ),
-        //* 2nd Tab. Settings
-        Tab(
-          icon: Icon(Icons.settings),
-        ),
-
-        //* 3rd Tab. Settings
-        Tab(
-          icon: Icon(Icons.person),
-        ),
-      ],
+      tabs: _buildCategoryTabs(),
     );
   }
 }
