@@ -14,6 +14,7 @@ class CustomSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     //* Sliver app bar if you want the page to be scrollable and have an effect to hide the app bar while scrolling
     return SliverAppBar(
+      centerTitle: true, //* To center title - Works both android and ios
       expandedHeight: 340,
       collapsedHeight: 120,
       floating: false,

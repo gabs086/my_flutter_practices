@@ -4,6 +4,7 @@ import 'package:flutter_application_1/models/restaurant_model.dart';
 import 'package:flutter_application_1/widgets/custom_current_location.dart';
 import 'package:flutter_application_1/widgets/custom_description_box.dart';
 import 'package:flutter_application_1/widgets/custom_drawer.dart';
+import 'package:flutter_application_1/widgets/custom_food_tile.dart';
 import 'package:flutter_application_1/widgets/custom_sliver_app_bar.dart';
 import 'package:flutter_application_1/widgets/custom_tab_bar.dart';
 import 'package:provider/provider.dart';
@@ -42,15 +43,19 @@ class _HomeScreenState extends State<HomeScreen>
   // * Return list of foods in given category
   List<Widget> getFoodInThisCategory(List<Food> fullMenu) {
     return FoodCategory.values.map((category) {
+      //* get category of food
       List<Food> categoryMenu = _filterMenuByCategory(category, fullMenu);
 
       return ListView.builder(
         itemCount: categoryMenu.length,
         physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(categoryMenu[index].name),
-          );
+          //* get Individual food
+          final food = categoryMenu[index];
+
+          //* Return UI
+          return CustomFoodTile(food: food, onTap: () {});
         },
       );
     }).toList();
